@@ -178,3 +178,48 @@
 
         <div class="footer">🌍 Data by WeatherAPI.com</div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        const API_KEY = '77af03ba141647b3a0811231250610';
+
+        function getWeatherData() {
+            const kota = $('#kotaInput').val().trim();
+            if (!kota) {
+                alert("Masukkan nama kota terlebih dahulu!");
+                return;
+            }
+
+            const url = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${kota}&aqi=no`;
+
+            $('#suhuTerkini').text('...');
+            $('#kondisiCuaca').text('');
+            $('#iconCuaca').hide();
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                success: function(data) {
+                    const suhu = `${data.current.temp_c}°C`;
+                    const kondisi = data.current.condition.text;
+                    const icon = "https:" + data.current.condition.icon;
+
+                    $('#suhuTerkini').text(suhu);
+                    $('#kondisiCuaca').text(kondisi);
+                    $('#iconCuaca').attr('src', icon).fadeIn(300);
+
+                    $('#negara').text(data.location.country);
+                    $('#provinsi').text(data.location.region || '-');
+                    $('#kota').text(data.location.name || '-');
+                    $('#kelembaban').text(data.current.humidity + '%');
+                    $('#lat').text(data.location.lat);
+                    $('#lon').text(data.location.lon);
+                },
+                error: function() {
+                    alert("Kota tidak ditemukan atau terjadi kesalahan koneksi.");
+                    $('#suhuTerkini').text('--°C');
+                    $('#kondisiCuaca').text('-');
+                    $('#iconCuaca').hide();
+                }
+            });
+        }
