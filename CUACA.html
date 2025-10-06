@@ -147,3 +147,34 @@
         }
     </style>
 </head>
+
+<body>
+    <div class="card">
+        <h2>🌤️ Info Cuaca Terkini</h2>
+
+        <div class="search">
+            <input type="text" id="kotaInput" placeholder="Masukkan nama kota...">
+            <button id="getWeatherBtn">Cari</button>
+        </div>
+
+        <div class="weather-display">
+            <div class="weather-main">
+                <img id="iconCuaca" src="" alt="Ikon Cuaca" style="display:none;">
+                <div>
+                    <div class="temp" id="suhuTerkini">--°C</div>
+                    <div class="condition" id="kondisiCuaca">-</div>
+                </div>
+            </div>
+
+            <div class="details">
+                <p><b>Negara:</b> <span id="negara">-</span></p>
+                <p><b>Provinsi:</b> <span id="provinsi">-</span></p>
+                <p><b>Kota:</b> <span id="kota">-</span></p>
+                <p><b>Kelembaban:</b> <span id="kelembaban">-</span></p>
+                <p><b>Latitude:</b> <span id="lat">-</span></p>
+                <p><b>Longitude:</b> <span id="lon">-</span></p>
+            </div>
+        </div>
+
+        <div class="footer">🌍 Data by WeatherAPI.com</div>
+    </div>
