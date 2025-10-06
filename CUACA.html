@@ -223,3 +223,12 @@
                 }
             });
         }
+
+        $('#getWeatherBtn').on('click', getWeatherData);
+        $('#kotaInput').on('keypress', function(e) {
+            if (e.which === 13) getWeatherData(); // tekan Enter
+        });
+    </script>
+</body>
+
+</html>
